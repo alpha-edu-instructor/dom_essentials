@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>DOM-дерево</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Practice</title>
 </head>
 <body>
-  <div id="main">
-    <p class="text">Basic text</p>
-    <ul class="list">
-      <li class="text">Item 1</li>
-      <li class="text">Item 2</li>
-      <li class="text">Item 3</li>
+  <div id="container">
+    <h1>Добро пожаловать на наш сайт</h1>
+    <ul id="myList">
+      <li>Домашняя страница</li>
+      <li>О нас</li>
+      <li>Контакты</li>
     </ul>
+    <p id="content">На этой странице вы найдёте много полезной информации.</p>
+    <div id="removableContainer">
+      <p>Последние новости: Новое обновление сайта</p>
+      <p>Уведомление: Завтра сервер будет недоступен с 02:00 до 04:00</p>
+    </div>
+    <a id="myLink" href="https://example.com">Узнать больше о нас</a>
+    <div id="gallery"></div>
+    <div class="reference">Часто задаваемые вопросы</div>
   </div>
   <script src="./js/script.js"></script>
 </body>
