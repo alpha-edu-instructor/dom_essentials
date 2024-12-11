@@ -1,47 +1,69 @@
-// 1.a
-const newSection = document.createElement("section");
-newSection.className = "highlight";
+const form = document.getElementById("form");
+const usernameInput = document.getElementById("username");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const checkbox = document.getElementById("checkbox");
+const radioButtons = document.querySelectorAll("input[name='gender']");
+const select = document.getElementById("select");
 
-// 1.b 
-const newSecondHeading = document.createElement("h2");
-newSecondHeading.textContent = "Динамический заголовок";
+// Errors
+const usernameError = document.getElementById("usernameError");
+const emailError = document.getElementById("emailError");
+const passwordError = document.getElementById("passwordError");
+const checkboxError = document.getElementById("checkboxError");
 
-const newOrderedList = document.createElement("ol");
-const items = ["Первый пункт", "Второй пункт", "Третий пункт"];
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  let isValid = true;
 
-for (const item of items) {
-  const newListItem = document.createElement("li"); // <li></li>
-  newListItem.textContent = item; // 1. <li>Первый пункт</li> 2. <li>Второй пункт</li> 3. <li>Третий пункт</li>
-  newOrderedList.append(newListItem);
-}
+  // Username:
+  const username = usernameInput.value;
+  if (username === "") {
+    usernameError.textContent = "Введите ваше имя";
+    isValid = false;
+  } else {
+    usernameError.textContent = "";
+  }
 
-newSection.append(newSecondHeading, newOrderedList);
+  // E-mail:
+  const email = emailInput.value;
+  if (email === "") {
+    emailError.textContent = "Введите ваш e-mail";
+    isValid = false;
+  } else {
+    emailError.textContent = "";
+  }
 
-// 1.c
-const container = document.querySelector("#container");
-container.append(newSection);
+  // Password:
+  const password = passwordInput.value;
+  if (password === "") {
+    passwordError.textContent = "Введите ваш пароль";
+    isValid = false;
+  } else {
+    passwordError.textContent = "";
+  }
 
-// 2.a
-const myLink = document.getElementById("myLink");
-// 2.b
-myLink.textContent = "Перейти на Google";
-// 2.c
-myLink.href = "https://google.com";
-// 2.d
-myLink.setAttribute("target", "_blank");
+  // Are you agree?
+  const isAgree = checkbox.checked;
+  if (!isAgree) {
+    checkboxError.textContent = "Вы должны быть согласны";
+    isValid = false;
+  } else {
+    checkboxError.textContent = "";
+  }
 
+  // Gender
+  let gender;
+  for (const radio of radioButtons) {
+    if (radio.checked) {
+      gender = radio.value;
+    }
+  }
 
-// 3.a
-const newFirstListItem = document.createElement("li");
-newFirstListItem.textContent = "Новый первый пункт";
-document.getElementById("myList").prepend(newFirstListItem);
-// 3.b
-const newLastListItem = document.createElement("li");
-newLastListItem.textContent = "Новый последний пункт";
-document.querySelector("#myList").append(newLastListItem);
+  // Country:
+  const country = select.value;
 
-
-// 4
-const removableContainer = document.querySelector("#removableContainer");
-const removableItems = removableContainer.querySelectorAll("p");
-removableContainer.removeChild(removableItems[1]);
+  if (isValid) {
+    alert("Данные отправлены!");
+  }
+});
